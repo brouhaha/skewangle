@@ -19,6 +19,9 @@ http://www.sydlogan.com/deskew.html
 I've made only minor changes, and added a main.cpp which allows it to
 be run from the command line.
 
+Note that the program only computes the skew angle, but does not actually
+perform the image rotation necessary to deskew the image.
+
 ## Building from source
 
 The program requires Qt 6, which requires C++ 17. It has been tested
