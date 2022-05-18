@@ -1,3 +1,5 @@
+// from http://sydlogan.com/deskew.html
+
 /* 
 Copyright (c) 2009, Syd Logan All rights reserved.
 
@@ -56,7 +58,7 @@ Deskew::~Deskew()
 }
 
 void 
-Deskew::Init(char *buf, const int width, const int height)
+Deskew::Init(uint8_t *buf, const int width, const int height)
 {
    m_buf = buf;
    m_width = width;
@@ -90,14 +92,14 @@ Deskew::GetSkewAngle()
 
    for (int i = 0; i < count; i++) {
       sum += top[i]->GetAlpha();
-      printf("Best %d is %f\n", i, top[i]->GetAlpha());
+      // printf("Best %d is %f\n", i, top[i]->GetAlpha());
       delete top[i];
    }
   
-   printf("Sum is %f\n", sum); 
+   // printf("Sum is %f\n", sum); 
    free(top);
    double ret = (sum / count);
-   printf("ret is %f\n", ret);
+   // printf("ret is %f\n", ret);
    return ret;
 }
 
@@ -175,7 +177,7 @@ bool
 Deskew::IsBlack(const int x, const int y)
 {
    //luminance = (c.R * 0.299) + (c.G * 0.587) + (c.B * 0.114)
-   return ((unsigned char) *(m_buf + y * m_width + x) < 140 ? true : false);
+   return (*(m_buf + y * m_width + x) < 140 ? true : false);
 }
 
 double 

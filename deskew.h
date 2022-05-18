@@ -1,3 +1,5 @@
+// from http://sydlogan.com/deskew.html
+
 /* 
 Copyright (c) 2009, Syd Logan All rights reserved.
 
@@ -28,6 +30,8 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #if !defined(__DESKEW_H__)
 #define __DESKEW_H__
 
+#include <cstdint>
+
 // http://imaging.gmse.net/download/gmseDeskew_vb.html
 
 class HoughLine {
@@ -52,18 +56,20 @@ class Deskew {
 public:
    Deskew();
    ~Deskew();
-   void Init(char *buf, const int width, const int height);
+   void Init(uint8_t *buf, const int width, const int height);
    double GetSkewAngle();
+
+private:
    HoughLine **GetTop(const int count);
    void Calc();
    void Calc(const int x, const int y);
    bool IsBlack(const int x, const int y);
    double GetAlpha(const int index);
    int CalcDIndex(const double d);
-private:
+
    int m_width;
    int m_height;
-   char *m_buf;
+   uint8_t *m_buf;
    int m_cDMin;
    double m_cAlphaStart;
    double m_cAlphaStep;
