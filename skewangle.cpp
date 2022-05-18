@@ -1,4 +1,6 @@
+// skewangle
 // from http://sydlogan.com/deskew.html
+// SPDX-License-Identifier: BSD-3-Clause
 
 /* 
 Copyright (c) 2009, Syd Logan All rights reserved.
@@ -30,10 +32,10 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <stdio.h>
 #include <stdlib.h>
 #include <memory.h>
-#include "deskew.h"
+#include "skewangle.h"
 #include <math.h>
 
-Deskew::Deskew() : 
+SkewAngle::SkewAngle() : 
    m_cAlphaStart(-20.0),
    m_cAlphaStep(0.2),
    m_cSteps(40 * 5),
@@ -42,7 +44,7 @@ Deskew::Deskew() :
 {
 }
 
-Deskew::~Deskew()
+SkewAngle::~SkewAngle()
 {
    if (m_cHMatrix) {
       free(m_cHMatrix);
@@ -50,7 +52,7 @@ Deskew::~Deskew()
 }
 
 void 
-Deskew::Init(uint8_t *buf, const int width, const int height)
+SkewAngle::Init(uint8_t *buf, const int width, const int height)
 {
    m_buf = buf;
    m_width = width;
@@ -62,7 +64,7 @@ Deskew::Init(uint8_t *buf, const int width, const int height)
 }
 
 double 
-Deskew::GetSkewAngle()
+SkewAngle::GetSkewAngle()
 {
    int count = 20;
    double sum = 0.0;
@@ -96,7 +98,7 @@ Deskew::GetSkewAngle()
 }
 
 HoughLine **
-Deskew::GetTop(const int count)
+SkewAngle::GetTop(const int count)
 {
    HoughLine **hl;
    HoughLine *tmp;
@@ -133,7 +135,7 @@ Deskew::GetTop(const int count)
 }
 
 void 
-Deskew::Calc()
+SkewAngle::Calc()
 {
    int hMin = m_height / 4;
    int hMax = m_height * 3 / 4;
@@ -150,7 +152,7 @@ Deskew::Calc()
 }
 
 void 
-Deskew::Calc(const int x, const int y)
+SkewAngle::Calc(const int x, const int y)
 {
    double d;
    int dIndex;
@@ -166,20 +168,20 @@ Deskew::Calc(const int x, const int y)
 }
 
 bool 
-Deskew::IsBlack(const int x, const int y)
+SkewAngle::IsBlack(const int x, const int y)
 {
    //luminance = (c.R * 0.299) + (c.G * 0.587) + (c.B * 0.114)
    return (*(m_buf + y * m_width + x) < 140 ? true : false);
 }
 
 double 
-Deskew::GetAlpha(const int index)
+SkewAngle::GetAlpha(const int index)
 {
    return m_cAlphaStart + index * m_cAlphaStep;
 }
 
 int 
-Deskew::CalcDIndex(const double d)
+SkewAngle::CalcDIndex(const double d)
 {
    return (int) (d - m_cDMin);
 }

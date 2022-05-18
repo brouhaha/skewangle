@@ -1,4 +1,4 @@
-deskew
+skewangle
 Makefile
 *.o
 .qmake.stash

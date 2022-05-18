@@ -1,5 +1,7 @@
+// skewangle
 // from http://sydlogan.com/deskew.html
 // based on VB.net code from http://imaging.gmse.net/download/gmseDeskew_vb.html
+// SPDX-License-Identifier: BSD-3-Clause
 
 /* 
 Copyright (c) 2009, Syd Logan All rights reserved.
@@ -28,8 +30,8 @@ TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#if !defined(__DESKEW_H__)
-#define __DESKEW_H__
+#if !defined(__SKEWANGLE_H__)
+#define __SKEWANGLE_H__
 
 #include <cstdint>
 
@@ -41,11 +43,11 @@ struct HoughLine
    double d = 0.0;
 };
 
-class Deskew
+class SkewAngle
 {
 public:
-   Deskew();
-   ~Deskew();
+   SkewAngle();
+   ~SkewAngle();
    void Init(uint8_t *buf, const int width, const int height);
    double GetSkewAngle();
 

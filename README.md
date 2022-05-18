@@ -1,4 +1,4 @@
-# deskew - compute skew angle of scanned image
+# skewangle - compute skew angle of scanned image
 
 Copyright 2009 Syd Logan All rights reserved
 Copyright 2022 Eric Smith <spacewar@gmail.com>
@@ -6,7 +6,7 @@ Copyright 2022 Eric Smith <spacewar@gmail.com>
 SPDX-License-Identifier: BSD-3-Clause
 
 deskew development is hosted at the
-[deskew Github repository](https://github.com/brouhaha/deskew/).
+[skewangle Github repository](https://github.com/brouhaha/skewangle/).
 
 ## Introduction
 
