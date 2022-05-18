@@ -1,6 +1,7 @@
 # skewangle - compute skew angle of scanned image
 
 Copyright 2009 Syd Logan All rights reserved
+
 Copyright 2022 Eric Smith <spacewar@gmail.com>
 
 SPDX-License-Identifier: BSD-3-Clause
