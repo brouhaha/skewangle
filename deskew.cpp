@@ -33,14 +33,6 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "deskew.h"
 #include <math.h>
 
-HoughLine::HoughLine() :
-   m_count(0),
-   m_index(0),
-   m_alpha(0.0),
-   m_d(0.0)
-{
-}
-
 Deskew::Deskew() : 
    m_cAlphaStart(-20.0),
    m_cAlphaStep(0.2),
@@ -91,8 +83,8 @@ Deskew::GetSkewAngle()
    // Return the average of the best
 
    for (int i = 0; i < count; i++) {
-      sum += top[i]->GetAlpha();
-      // printf("Best %d is %f\n", i, top[i]->GetAlpha());
+      sum += top[i]->alpha;
+      // printf("Best %d is %f\n", i, top[i]->alpha);
       delete top[i];
    }
   
@@ -118,11 +110,11 @@ Deskew::GetTop(const int count)
    }
 
    for (int i = 0; i < m_cHMatrixSize; i++) {
-      if (m_cHMatrix[i] > hl[count - 1]->GetCount()) {
-         hl[count - 1]->SetCount(m_cHMatrix[i]);
-         hl[count - 1]->SetIndex(i);
+      if (m_cHMatrix[i] > hl[count - 1]->count) {
+         hl[count - 1]->count = m_cHMatrix[i];
+         hl[count - 1]->index = i;
          int j = count - 1;
-         while (j > 0 && hl[j]->GetCount() > hl[j - 1]->GetCount()) {
+         while (j > 0 && hl[j]->count > hl[j - 1]->count) {
             tmp = hl[j];
             hl[j] = hl[j - 1];
             hl[j - 1] = tmp;
@@ -132,10 +124,10 @@ Deskew::GetTop(const int count)
    }
 
    for (int i = 0; i < count; i++) {
-      dIndex = hl[i]->GetIndex() / m_cSteps;
-      alphaIndex = hl[i]->GetIndex() - dIndex * m_cSteps;
-      hl[i]->SetAlpha(GetAlpha(alphaIndex));
-      hl[i]->SetD(dIndex + m_cDMin);
+      dIndex = hl[i]->index / m_cSteps;
+      alphaIndex = hl[i]->index - dIndex * m_cSteps;
+      hl[i]->alpha = GetAlpha(alphaIndex);
+      hl[i]->d = dIndex + m_cDMin;
    }
    return hl;
 }

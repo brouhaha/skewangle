@@ -1,4 +1,5 @@
 // from http://sydlogan.com/deskew.html
+// based on VB.net code from http://imaging.gmse.net/download/gmseDeskew_vb.html
 
 /* 
 Copyright (c) 2009, Syd Logan All rights reserved.
@@ -32,27 +33,16 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include <cstdint>
 
-// http://imaging.gmse.net/download/gmseDeskew_vb.html
-
-class HoughLine {
-public:
-   HoughLine();
-   void SetCount(int count) {m_count = count;};
-   int GetCount() {return m_count;};
-   void SetIndex(int index) {m_index = index;};
-   int GetIndex() {return m_index;};
-   void SetAlpha(double alpha) {m_alpha = alpha;};
-   double GetAlpha() {return m_alpha;};
-   void SetD(double d) {m_d = d;};
-   double GetD() {return m_d;};
-private:
-   int m_count;
-   int m_index;
-   double m_alpha;
-   double m_d;
+struct HoughLine
+{
+   int count = 0;
+   int index = 0;
+   double alpha = 0.0;
+   double d = 0.0;
 };
 
-class Deskew {
+class Deskew
+{
 public:
    Deskew();
    ~Deskew();
